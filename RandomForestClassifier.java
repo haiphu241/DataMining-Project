@@ -1,25 +1,24 @@
-import weka.classifiers.evaluation.Evaluation;
-import weka.classifiers.lazy.IBk;
+import weka.classifiers.trees.RandomForest;
+import weka.classifiers.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
-public class IBkClassifier {
+public class RandomForestClassifier {
     public static void main(String[] args) throws Exception {
         DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
         Instances trainDataset = trainSource.getDataSet();
         DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
         Instances testDataset = testSource.getDataSet();
 
+        // Set class index to the last attribute (target variable)
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
         testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-        IBk ibk = new IBk();
-        ibk.buildClassifier(trainDataset);
-
-        System.out.println("IBk params" + String.join(" ", ibk.getOptions()));
+        RandomForest randomForest = new RandomForest();
+        randomForest.buildClassifier(trainDataset);
 
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(ibk, testDataset);
+        eval.evaluateModel(randomForest, testDataset);
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

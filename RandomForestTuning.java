@@ -1,25 +1,28 @@
 import weka.classifiers.evaluation.Evaluation;
-import weka.classifiers.lazy.IBk;
+import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
-import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.converters.ConverterUtils;
+import java.util.Random;
 
-public class IBkClassifier {
+
+public class RandomForestTuning {
     public static void main(String[] args) throws Exception {
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
+        ConverterUtils.DataSource trainSource = new ConverterUtils.DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
         Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
 
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-        IBk ibk = new IBk();
-        ibk.buildClassifier(trainDataset);
+        String[] options = new String[4];
+        options[0] = "-P"; options[1] = "50";
+        options[2] = "-I"; options[3] = "50";
 
-        System.out.println("IBk params" + String.join(" ", ibk.getOptions()));
+        // Create and train the OneR classifier
+        RandomForest randomForest = new RandomForest();
+        randomForest.setOptions(options);
+        randomForest.buildClassifier(trainDataset);
 
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(ibk, testDataset);
+        eval.crossValidateModel(randomForest, trainDataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
