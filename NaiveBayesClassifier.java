@@ -1,9 +1,9 @@
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.functions.Logistic;
+import weka.classifiers.bayes.NaiveBayes;
 
-public class LogisticClassifier {
+public class NaiveBayesClassifier {
     public static void main(String[] args) throws Exception {
         // Load dataset
         DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
@@ -15,14 +15,15 @@ public class LogisticClassifier {
         testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
         // Create and build the classifier
-        Logistic log = new Logistic();
-        log.buildClassifier(trainDataset);
+        NaiveBayes nb = new NaiveBayes();
+        nb.buildClassifier(trainDataset);
 
-        System.out.println("Logistic params" + String.join(" ", log.getOptions()));
+        System.out.println("NB params" + String.join(" ", nb.getOptions()));
 
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(log, testDataset);
+        eval.evaluateModel(nb, testDataset);
 
+        // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
         // Print additional evaluation metrics
@@ -32,5 +33,8 @@ public class LogisticClassifier {
         System.out.println("F-Measure = " + eval.fMeasure(1));
         System.out.println("Error Rate = " + eval.errorRate());
         System.out.println(eval.toClassDetailsString());
+
+        weka.core.SerializationHelper.write("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model", nb);
+        weka.core.SerializationHelper.read("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model");
     }
 }

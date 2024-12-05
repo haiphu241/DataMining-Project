@@ -1,28 +1,31 @@
-import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.functions.Logistic;
+import java.util.Random;
 
-public class LogisticClassifier {
+public class LogisticTuning {
     public static void main(String[] args) throws Exception {
         // Load dataset
         DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
         Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
 
+        // Set class index to the last attribute (target variable)
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-        // Create and build the classifier
-        Logistic log = new Logistic();
-        log.buildClassifier(trainDataset);
+        String[] options = new String[4];
+        options[0] = "-R"; options[1] = "1.0E-2";
+        options[2] = "-M"; options[3] = "5";
 
-        System.out.println("Logistic params" + String.join(" ", log.getOptions()));
+        Logistic logistic = new Logistic();
+        logistic.setOptions(options);
+        logistic.buildClassifier(trainDataset);
 
+        // Evaluate the tuned classifier using the test dataset
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(log, testDataset);
+        eval.crossValidateModel(logistic, trainDataset, 10, new Random(42));
 
+        // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
         // Print additional evaluation metrics

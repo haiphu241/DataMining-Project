@@ -1,28 +1,27 @@
 import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.lazy.IBk;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.functions.Logistic;
 
-public class LogisticClassifier {
+public class IBkClassifier {
     public static void main(String[] args) throws Exception {
-        // Load dataset
         DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
         Instances trainDataset = trainSource.getDataSet();
         DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
+        Instances testDataset = trainSource.getDataSet();
 
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
         testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-        // Create and build the classifier
-        Logistic log = new Logistic();
-        log.buildClassifier(trainDataset);
+        IBk ibk = new IBk();
+        ibk.buildClassifier(trainDataset);
 
-        System.out.println("Logistic params" + String.join(" ", log.getOptions()));
+        System.out.println("IBk params" + String.join(" ", ibk.getOptions()));
 
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(log, testDataset);
+        eval.evaluateModel(ibk, testDataset);
 
+        // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
         // Print additional evaluation metrics

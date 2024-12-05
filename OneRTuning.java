@@ -1,28 +1,28 @@
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.functions.Logistic;
+import weka.classifiers.rules.OneR;
+import java.util.Random;
 
-public class LogisticClassifier {
+public class OneRTuning {
     public static void main(String[] args) throws Exception {
-        // Load dataset
         DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
         Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
 
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-        // Create and build the classifier
-        Logistic log = new Logistic();
-        log.buildClassifier(trainDataset);
+        String[] options = new String[2];
+        options[0] = "-B"; options[1] = "2";
 
-        System.out.println("Logistic params" + String.join(" ", log.getOptions()));
+        // Create and train the OneR classifier
+        OneR oner = new OneR();
+        oner.setOptions(options);
+        oner.buildClassifier(trainDataset);
 
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(log, testDataset);
+        eval.crossValidateModel(oner, trainDataset, 10, new Random(42));
 
+        // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
         // Print additional evaluation metrics
