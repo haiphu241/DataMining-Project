@@ -1,27 +1,27 @@
+package BaseModel;
+
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.functions.Logistic;
+import java.util.Random;
 
 public class LogisticClassifier {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
         // Create and build the classifier
         Logistic log = new Logistic();
-        log.buildClassifier(trainDataset);
+        log.buildClassifier(dataset);
 
-        System.out.println("Logistic params" + String.join(" ", log.getOptions()));
+        System.out.println("Logistic params: " + String.join(" ", log.getOptions()));
 
-        Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(log, testDataset);
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(log, dataset, 10, new Random(1));
 
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 

@@ -1,27 +1,26 @@
+package BaseModel;
+
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.rules.ZeroR;
+import java.util.Random;
 
 public class ZeroRClassifier {
     public static void main(String[] args) throws Exception {
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = trainSource.getDataSet();
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
-
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
         // Create and train the OneR classifier
         ZeroR zeroR = new ZeroR();
-        zeroR.buildClassifier(trainDataset);
+        zeroR.buildClassifier(dataset);
 
         System.out.println("ZeroR params" + String.join(" ", zeroR.getOptions()));
 
-        Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(zeroR, testDataset);
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(zeroR, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

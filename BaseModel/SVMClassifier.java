@@ -1,27 +1,27 @@
+package BaseModel;
+
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.functions.SMO;
+import java.util.Random;
 
 public class SVMClassifier {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
         // Create and build the classifier
         SMO smo = new SMO();
-        smo.buildClassifier(trainDataset);
+        smo.buildClassifier(dataset);
 
-        System.out.println("SVM params" + String.join(" ", smo.getOptions()));
+        System.out.println("SVM params: " + String.join(" ", smo.getOptions()));
 
-        weka.classifiers.evaluation.Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(smo, testDataset);
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(smo, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

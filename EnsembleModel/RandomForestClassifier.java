@@ -1,24 +1,24 @@
+package EnsembleModel;
+
 import weka.classifiers.trees.RandomForest;
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import java.util.Random;
 
 public class RandomForestClassifier {
     public static void main(String[] args) throws Exception {
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        // Set class index to the last attribute (target variable)
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
         RandomForest randomForest = new RandomForest();
-        randomForest.buildClassifier(trainDataset);
+        randomForest.buildClassifier(dataset);
+        System.out.println("RandomForest params: " + String.join(" ", randomForest.getOptions()));
 
-        Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(randomForest, testDataset);
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(randomForest, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

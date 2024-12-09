@@ -1,30 +1,34 @@
+package BaseModel;
+
+import weka.classifiers.trees.J48;
 import weka.classifiers.evaluation.Evaluation;
-import weka.classifiers.lazy.IBk;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
-public class IBkClassifier {
+import java.util.Random;
+
+public class J48Tuning {
     public static void main(String[] args) throws Exception {
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
+        // Load dataset
+        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
         Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
 
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
 
-        IBk ibk = new IBk();
-        ibk.buildClassifier(trainDataset);
+        String[] options = new String[5];
+        options[0] = "-C"; options[1] = "0.25";
+        options[2] = "-M"; options[3] = "4";
+        options[4] = "-B";
 
-        System.out.println("IBk params" + String.join(" ", ibk.getOptions()));
+        J48 tree = new J48();
+        tree.setOptions(options);
 
         Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(ibk, testDataset);
+        eval.crossValidateModel(tree, trainDataset, 10, new Random(42)); // 42 for reproducibility
 
-        // Print the confusion matrix
+        // Print evaluation results
+        System.out.println("J48 Hyperparameters: " + String.join(" ", tree.getOptions()));
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
-
-        // Print additional evaluation metrics
         System.out.println(eval.toSummaryString("\nResults\n======\n", false));
         System.out.println("Precision = " + eval.precision(1));
         System.out.println("Recall = " + eval.recall(1));

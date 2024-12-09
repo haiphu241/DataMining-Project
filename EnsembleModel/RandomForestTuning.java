@@ -1,3 +1,5 @@
+package EnsembleModel;
+
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
@@ -7,22 +9,23 @@ import java.util.Random;
 
 public class RandomForestTuning {
     public static void main(String[] args) throws Exception {
-        ConverterUtils.DataSource trainSource = new ConverterUtils.DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
+        ConverterUtils.DataSource source = new ConverterUtils.DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
         String[] options = new String[4];
         options[0] = "-P"; options[1] = "50";
         options[2] = "-I"; options[3] = "50";
 
-        // Create and train the OneR classifier
+        // Create and train the RandomForest classifier
         RandomForest randomForest = new RandomForest();
         randomForest.setOptions(options);
-        randomForest.buildClassifier(trainDataset);
+        randomForest.buildClassifier(dataset);
+        System.out.println("RandomForest Hyperparameters: " + String.join(" ", randomForest.getOptions()));
 
-        Evaluation eval = new Evaluation(trainDataset);
-        eval.crossValidateModel(randomForest, trainDataset, 10, new Random(42));
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(randomForest, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

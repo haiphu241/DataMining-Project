@@ -1,3 +1,5 @@
+package Preprocessing;
+
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -11,7 +13,7 @@ import java.io.File;
 public class AttributeSelection {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\employees_data.arff");
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
         Instances data = source.getDataSet();
         data.setClassIndex(data.numAttributes() - 1);
 
@@ -39,7 +41,7 @@ public class AttributeSelection {
         // Save the selected attributes to a new ARFF file
         ArffSaver saver = new ArffSaver();
         saver.setInstances(selectedData);
-        saver.setFile(new File("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\employees_data.arff"));
+        saver.setFile(new File("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff"));
         saver.writeBatch();
 
         // Print results

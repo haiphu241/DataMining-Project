@@ -1,26 +1,25 @@
+package EnsembleModel;
+
+import weka.classifiers.meta.AdaBoostM1;
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.rules.OneR;
 import java.util.Random;
 
-public class OneRTuning {
+public class AdaBoostM1Classifier {
     public static void main(String[] args) throws Exception {
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        String[] options = new String[2];
-        options[0] = "-B"; options[1] = "2";
+        AdaBoostM1 adaBoostM1 = new AdaBoostM1();
+        adaBoostM1.buildClassifier(dataset);
 
-        // Create and train the OneR classifier
-        OneR oner = new OneR();
-        oner.setOptions(options);
-        oner.buildClassifier(trainDataset);
+        System.out.println("AdaBoostM1 params: " + String.join(" ", adaBoostM1.getOptions()));
 
-        Evaluation eval = new Evaluation(trainDataset);
-        eval.crossValidateModel(oner, trainDataset, 10, new Random(42));
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(adaBoostM1, dataset, 10, new Random(1));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

@@ -1,3 +1,5 @@
+package Preprocessing;
+
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
@@ -10,7 +12,7 @@ import java.io.File;
 public class DataPreprocess {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\employees_data.arff");
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
         Instances data = source.getDataSet();
 
         // Set class index to the last attribute (target variable)
@@ -31,7 +33,7 @@ public class DataPreprocess {
         // Save or use the preprocessed data
         ArffSaver saver = new ArffSaver();
         saver.setInstances(standardizedData);
-        saver.setFile(new File("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\employees_data.arff"));
+        saver.setFile(new File("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff"));
         saver.writeBatch();
 
         // Print some information about the preprocessed data

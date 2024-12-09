@@ -1,27 +1,28 @@
+package BaseModel;
+
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.bayes.NaiveBayes;
+import java.util.Random;
 
 public class NaiveBayesClassifier {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\training_data.arff");
-        Instances trainDataset = trainSource.getDataSet();
-        DataSource testSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\testing_data.arff");
-        Instances testDataset = testSource.getDataSet();
+        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        Instances dataset = source.getDataSet();
 
-        trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
-        testDataset.setClassIndex(testDataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
 
         // Create and build the classifier
         NaiveBayes nb = new NaiveBayes();
-        nb.buildClassifier(trainDataset);
+        nb.buildClassifier(dataset);
 
         System.out.println("NB params" + String.join(" ", nb.getOptions()));
 
-        Evaluation eval = new Evaluation(trainDataset);
-        eval.evaluateModel(nb, testDataset);
+        Evaluation eval = new Evaluation(dataset);
+        eval.crossValidateModel(nb, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
@@ -34,7 +35,7 @@ public class NaiveBayesClassifier {
         System.out.println("Error Rate = " + eval.errorRate());
         System.out.println(eval.toClassDetailsString());
 
-        weka.core.SerializationHelper.write("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model", nb);
-        weka.core.SerializationHelper.read("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model");
+        SerializationHelper.write("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model", nb);
+        SerializationHelper.read("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model");
     }
 }
