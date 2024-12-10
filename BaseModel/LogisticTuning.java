@@ -9,7 +9,7 @@ import java.util.Random;
 public class LogisticTuning {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         // Set class index to the last attribute (target variable)
