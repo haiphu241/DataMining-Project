@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class RandomForestTuning {
     public static void main(String[] args) throws Exception {
-        ConverterUtils.DataSource source = new ConverterUtils.DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        ConverterUtils.DataSource source = new ConverterUtils.DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);

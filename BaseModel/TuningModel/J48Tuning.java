@@ -10,7 +10,7 @@ import java.util.Random;
 public class J48Tuning {
     public static void main(String[] args) throws Exception {
         // Load dataset
-        DataSource trainSource = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        DataSource trainSource = new DataSource("Data\\customers_data.arff");
         Instances trainDataset = trainSource.getDataSet();
 
         trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
