@@ -1,4 +1,4 @@
-package EnsembleModel;
+package EnsembleModel.TuningModel;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.trees.RandomForest;

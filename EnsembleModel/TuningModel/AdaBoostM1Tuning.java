@@ -1,4 +1,4 @@
-package EnsembleModel;
+package EnsembleModel.TuningModel;
 
 import weka.classifiers.meta.AdaBoostM1;
 import weka.classifiers.evaluation.Evaluation;

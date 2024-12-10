@@ -1,4 +1,4 @@
-package BaseModel;
+package BaseModel.TuningModel;
 
 import weka.classifiers.Evaluation;
 import weka.core.Instances;

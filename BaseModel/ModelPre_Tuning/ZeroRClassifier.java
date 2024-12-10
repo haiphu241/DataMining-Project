@@ -1,12 +1,12 @@
-package BaseModel;
+package BaseModel.ModelPre_Tuning;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.rules.OneR;
+import weka.classifiers.rules.ZeroR;
 import java.util.Random;
 
-public class OneRClassifier {
+public class ZeroRClassifier {
     public static void main(String[] args) throws Exception {
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
@@ -14,14 +14,13 @@ public class OneRClassifier {
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
         // Create and train the OneR classifier
-        OneR oner = new OneR();
-        oner.buildClassifier(dataset);
+        ZeroR zeroR = new ZeroR();
+        zeroR.buildClassifier(dataset);
 
-        System.out.println("OneR params: " + String.join(" ", oner.getOptions()));
+        System.out.println("ZeroR params" + String.join(" ", zeroR.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(oner, dataset, 10, new Random(42));
-
+        eval.crossValidateModel(zeroR, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

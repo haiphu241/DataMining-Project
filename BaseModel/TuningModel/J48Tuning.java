@@ -1,4 +1,4 @@
-package BaseModel;
+package BaseModel.TuningModel;
 
 import weka.classifiers.trees.J48;
 import weka.classifiers.evaluation.Evaluation;

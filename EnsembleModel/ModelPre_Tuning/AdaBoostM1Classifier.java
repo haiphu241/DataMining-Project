@@ -1,29 +1,30 @@
-package BaseModel;
+package EnsembleModel.ModelPre_Tuning;
 
+import weka.classifiers.meta.AdaBoostM1;
+import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.evaluation.Evaluation;
-import weka.classifiers.trees.J48;
 import java.util.Random;
 
-public class J48Classifier {
+public class AdaBoostM1Classifier {
     public static void main(String[] args) throws Exception {
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        J48 j48 = new J48();
-        j48.buildClassifier(dataset);
+        AdaBoostM1 adaBoostM1 = new AdaBoostM1();
+        adaBoostM1.buildClassifier(dataset);
 
-        System.out.println("J48 params: " + String.join(" ", j48.getOptions()));
+        System.out.println("AdaBoostM1 params: " + String.join(" ", adaBoostM1.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(j48, dataset, 10, new Random(42));
+        eval.crossValidateModel(adaBoostM1, dataset, 10, new Random(1));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
+        // Print additional evaluation metrics
         System.out.println(eval.toSummaryString("\nResults\n======\n", false));
         System.out.println("Precision = " + eval.precision(1));
         System.out.println("Recall = " + eval.recall(1));

@@ -1,28 +1,28 @@
-package BaseModel;
+package BaseModel.ModelPre_Tuning;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.rules.ZeroR;
+import weka.classifiers.functions.Logistic;
 import java.util.Random;
 
-public class ZeroRClassifier {
+public class LogisticClassifier {
     public static void main(String[] args) throws Exception {
+        // Load dataset
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        // Create and train the OneR classifier
-        ZeroR zeroR = new ZeroR();
-        zeroR.buildClassifier(dataset);
+        // Create and build the classifier
+        Logistic log = new Logistic();
+        log.buildClassifier(dataset);
 
-        System.out.println("ZeroR params" + String.join(" ", zeroR.getOptions()));
+        System.out.println("Logistic params: " + String.join(" ", log.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(zeroR, dataset, 10, new Random(42));
+        eval.crossValidateModel(log, dataset, 10, new Random(1));
 
-        // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
         // Print additional evaluation metrics

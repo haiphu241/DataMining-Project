@@ -1,25 +1,27 @@
-package EnsembleModel;
+package BaseModel.ModelPre_Tuning;
 
-import weka.classifiers.meta.AdaBoostM1;
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.classifiers.functions.SMO;
 import java.util.Random;
 
-public class AdaBoostM1Classifier {
+public class SVMClassifier {
     public static void main(String[] args) throws Exception {
+        // Load dataset
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        AdaBoostM1 adaBoostM1 = new AdaBoostM1();
-        adaBoostM1.buildClassifier(dataset);
+        // Create and build the classifier
+        SMO smo = new SMO();
+        smo.buildClassifier(dataset);
 
-        System.out.println("AdaBoostM1 params: " + String.join(" ", adaBoostM1.getOptions()));
+        System.out.println("SVM params: " + String.join(" ", smo.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(adaBoostM1, dataset, 10, new Random(1));
+        eval.crossValidateModel(smo, dataset, 10, new Random(42));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

@@ -1,4 +1,4 @@
-package BaseModel;
+package BaseModel.TuningModel;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.lazy.IBk;

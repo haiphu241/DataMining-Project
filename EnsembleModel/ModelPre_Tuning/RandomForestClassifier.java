@@ -1,28 +1,26 @@
-package BaseModel;
+package EnsembleModel.ModelPre_Tuning;
 
-import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.trees.RandomForest;
+import weka.classifiers.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.functions.Logistic;
 import java.util.Random;
 
-public class LogisticClassifier {
+public class RandomForestClassifier {
     public static void main(String[] args) throws Exception {
-        // Load dataset
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        // Create and build the classifier
-        Logistic log = new Logistic();
-        log.buildClassifier(dataset);
-
-        System.out.println("Logistic params: " + String.join(" ", log.getOptions()));
+        RandomForest randomForest = new RandomForest();
+        randomForest.buildClassifier(dataset);
+        System.out.println("RandomForest params: " + String.join(" ", randomForest.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(log, dataset, 10, new Random(1));
+        eval.crossValidateModel(randomForest, dataset, 10, new Random(42));
 
+        // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
         // Print additional evaluation metrics

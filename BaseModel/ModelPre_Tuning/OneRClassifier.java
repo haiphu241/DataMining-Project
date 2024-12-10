@@ -1,27 +1,27 @@
-package BaseModel;
+package BaseModel.ModelPre_Tuning;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.functions.SMO;
+import weka.classifiers.rules.OneR;
 import java.util.Random;
 
-public class SVMClassifier {
+public class OneRClassifier {
     public static void main(String[] args) throws Exception {
-        // Load dataset
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        // Create and build the classifier
-        SMO smo = new SMO();
-        smo.buildClassifier(dataset);
+        // Create and train the OneR classifier
+        OneR oner = new OneR();
+        oner.buildClassifier(dataset);
 
-        System.out.println("SVM params: " + String.join(" ", smo.getOptions()));
+        System.out.println("OneR params: " + String.join(" ", oner.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(smo, dataset, 10, new Random(42));
+        eval.crossValidateModel(oner, dataset, 10, new Random(42));
+
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());

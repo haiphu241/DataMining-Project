@@ -1,28 +1,25 @@
-package BaseModel;
+package BaseModel.ModelPre_Tuning;
 
 import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.lazy.IBk;
 import weka.core.Instances;
-import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.classifiers.bayes.NaiveBayes;
 import java.util.Random;
 
-public class NaiveBayesClassifier {
+public class IBkClassifier {
     public static void main(String[] args) throws Exception {
-        // Load dataset
         DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        // Create and build the classifier
-        NaiveBayes nb = new NaiveBayes();
-        nb.buildClassifier(dataset);
+        IBk ibk = new IBk();
+        ibk.buildClassifier(dataset);
 
-        System.out.println("NB params" + String.join(" ", nb.getOptions()));
+        System.out.println("IBk params: " + String.join(" ", ibk.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
-        eval.crossValidateModel(nb, dataset, 10, new Random(42));
+        eval.crossValidateModel(ibk, dataset, 10, new Random(1));
 
         // Print the confusion matrix
         System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
@@ -34,8 +31,5 @@ public class NaiveBayesClassifier {
         System.out.println("F-Measure = " + eval.fMeasure(1));
         System.out.println("Error Rate = " + eval.errorRate());
         System.out.println(eval.toClassDetailsString());
-
-        SerializationHelper.write("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model", nb);
-        SerializationHelper.read("C:\\Users\\tonga\\IdeaProjects\\DataMining - Copy\\src\\BayesClassifier\\Naive_Bayes.model");
     }
 }
