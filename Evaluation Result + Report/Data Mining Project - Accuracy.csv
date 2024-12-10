@@ -1,0 +1,76 @@
+,MODEL,,PRE-TUNING,POST-TUNING
+,Rules,OneR,"-B 6
+Precision = 0.8683739837398374
+Recall = 0.7335347846988531
+F-Measure = 0.7952794013625704
+Error Rate = 0.21356998601833152","-B 12
+Precision = 0.8683739837398374
+Recall = 0.7335347846988531
+F-Measure = 0.7952794013625704
+Error Rate = 0.21356998601833152"
+,,ZeroR,"Precision = 0.5655196520118068
+Recall = 1.0
+F-Measure = 0.7224689275347936
+Error Rate = 0.43448034798819324",x
+,Bayes,NaiveBayes,"Precision = 0.8721315914167739
+Recall = 0.8848293386443239
+F-Measure = 0.8784345810322494
+Error Rate = 0.13849619387913625",x
+,Functions,Logistic,"-R 1.0E-8 -M -1 -num-decimal-places 4
+Precision = 0.8620643069440692
+Recall = 0.8764507932147517
+F-Measure = 0.8691980248595268
+Error Rate = 0.1491766350784527","-R 1.0E-16 -M 4 -num-decimal-places 4
+Precision = 0.8627743159035491
+Recall = 0.87480255476959
+F-Measure = 0.8687468030690536
+Error Rate = 0.1494873388224328"
+,,SMO,"-C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K weka.classifiers.functions.supportVector.PolyKernel -E 1.0 -C 250007 -calibrator weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4
+Precision = 0.8599973880109704
+Recall = 0.9044708467825012
+F-Measure = 0.8816736401673639
+Error Rate = 0.1372922168712133","-C 0.5 -L 0.01 -P 1.0E-12 -N 2 -V -1 -W 1 -K weka.classifiers.functions.supportVector.PolyKernel -E 1.0 -C 250007 -calibrator weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4
+Precision = 0.8599882452817867
+Recall = 0.9044021701806194
+F-Measure = 0.8816362053959965
+Error Rate = 0.13733105483921082"
+,Lazy,IBk,"-K 1 -W 0 -A weka.core.neighboursearch.LinearNNSearch -A ""weka.core.EuclideanDistance -R first-last""
+Precision = 0.925017088174983
+Recall = 0.9294004532655724
+F-Measure = 0.9272035901476483
+Error Rate = 0.08253068199471804","-K 3 -W 0 -A weka.core.neighboursearch.LinearNNSearch -A ""weka.core.ManhattanDistance -R first-last""
+Precision = 0.9258861439312567
+Recall = 0.9471876931529428
+F-Measure = 0.936415792511118
+Error Rate = 0.07274351405934441"
+,Trees,J48,"-C 0.25 -M 2
+Precision = 0.9363245566899516
+Recall = 0.9573518302314401
+F-Measure = 0.9467214506434853
+Error Rate = 0.060936771788100044","-C 0.25 -M 1
+Precision = 0.9366944146079484
+Recall = 0.9582446260559028
+F-Measure = 0.9473469803442305
+Error Rate = 0.06023768836414479"
+,,RandomForest,"-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
+Precision = 0.9379058441558441
+Recall = 0.9522697616921915
+F-Measure = 0.9450332254217073
+Error Rate = 0.06264564237999068","-P 50 -I 50 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
+Precision = 0.9393018702315846
+Recall = 0.9554288853787515
+F-Measure = 0.9472967451995097
+Error Rate = 0.06012117446015224"
+,Meta,AdaBoostM1,"-P 100 -S 1 -I 10 -W weka.classifiers.trees.DecisionStump
+Accuracy: 86.1387 %
+
+Precision = 0.8229958650126717
+Recall = 0.8671820098383697
+F-Measure = 0.8445113605255954
+Error Rate = 0.1898554357817331","-P 100 -S 1 -I 10 -W weka.classifiers.bayes.NaiveBayes
+Accuracy: 88.6515 %
+
+Precision = 0.8519407198306281
+Recall = 0.8483485593815882
+F-Measure = 0.8501408450704226
+Error Rate = 0.1778223447814824"
