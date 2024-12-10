@@ -3,13 +3,16 @@ package EnsembleModel;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils;
 import java.util.Random;
-
+import weka.core.SerializationHelper;
 
 public class RandomForestTuning {
     public static void main(String[] args) throws Exception {
-        ConverterUtils.DataSource source = new ConverterUtils.DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        long startTime = System.nanoTime();
+
+        ConverterUtils.DataSource source = new ConverterUtils.DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\InfoGain_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
@@ -22,7 +25,7 @@ public class RandomForestTuning {
         RandomForest randomForest = new RandomForest();
         randomForest.setOptions(options);
         randomForest.buildClassifier(dataset);
-        System.out.println("RandomForest Hyperparameters: " + String.join(" ", randomForest.getOptions()));
+        System.out.println("RandomForest Selected Parameters: " + String.join(" ", randomForest.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
         eval.crossValidateModel(randomForest, dataset, 10, new Random(42));
@@ -37,5 +40,12 @@ public class RandomForestTuning {
         System.out.println("F-Measure = " + eval.fMeasure(1));
         System.out.println("Error Rate = " + eval.errorRate());
         System.out.println(eval.toClassDetailsString());
+
+        SerializationHelper.write("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Model\\RandomForestTuningBinaryModel.model", randomForest);
+
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+        System.out.println("Runtime: " + duration + " nanoseconds");
     }
 }

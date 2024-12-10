@@ -2,22 +2,24 @@ package BaseModel;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
+import java.io.File;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.rules.ZeroR;
 import java.util.Random;
 
 public class ZeroRClassifier {
     public static void main(String[] args) throws Exception {
+        long startTime = System.nanoTime();
         DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
 
-        // Create and train the OneR classifier
         ZeroR zeroR = new ZeroR();
         zeroR.buildClassifier(dataset);
 
-        System.out.println("ZeroR params" + String.join(" ", zeroR.getOptions()));
+        System.out.println("ZeroR Parameters: " + String.join(" ", zeroR.getOptions()));
 
         Evaluation eval = new Evaluation(dataset);
         eval.crossValidateModel(zeroR, dataset, 10, new Random(42));
@@ -32,5 +34,12 @@ public class ZeroRClassifier {
         System.out.println("F-Measure = " + eval.fMeasure(1));
         System.out.println("Error Rate = " + eval.errorRate());
         System.out.println(eval.toClassDetailsString());
+
+        SerializationHelper.write("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Model\\ZeroRBinaryModel.model", zeroR);
+
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+        System.out.println("Runtime: " + duration + " nanoseconds");
     }
 }
