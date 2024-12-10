@@ -7,9 +7,9 @@
     Applying nine classification algorithms for evaluating the efficiency on the Airline Passenger Satisfaction Dataset
     <br />
     <br />
-    <a href="https://github.com/GiaKhanhs/DM_Project/issues">Report Bug</a>
+    <a href="https://github.com/dngcphngnh04/DataMining-Project/issues">Report Bug</a>
     ·
-    <a href="https://github.com/GiaKhanhs/DM_Project/issues">Request Feature</a>
+    <a href="https://github.com/dngcphngnh04/DataMining-Project/issues">Request Feature</a>
   </h3>
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -22,13 +22,12 @@
 
 ## 1. The team behind it
 
-| No. |       Full Name        | Student's ID |              Email               |                  Github account                   |                               Roles                                | Contribution |
-| :-: | :--------------------: | :----------: | :------------------------------: | :-----------------------------------------------: | :----------------------------------------------------------------: | :----------: |
-|  1  |  Nguyen Hoang Anh Tu   | ITDSIU20090  | ITDSIU20090@student.hcmiu.edu.vn |     [nghganhtu](https://github.com/nghganhtu)     |   **TEAM LEADER** with Model evaluation, Hyper-parameters tuning   |     20%      |
-|  2  |   Nguyen Quang Dieu    | ITDSIU20031  | ITDSIU20031@student.hcmiu.edu.vn |    [itzmealvin](https://github.com/itzmealvin)    |              Data preprocessing, Optimize performance              |     20%      |
-|  3  | Duong Nguyen Gia Khanh | ITDSIU20100  | ITDSIU20100@student.hcmiu.edu.vn |     [GiaKhanhs](https://github.com/GiaKhanhs)     | Implement classification/prediction algorithms in Java, Bug fixing |     20%      |
-|  4  |    Hoang Tuan Kiet     | ITDSIU21055  | ITDSIU21055@student.hcmiu.edu.vn |      [meiskiet](https://github.com/meiskiet)      |          Implement pre-processing code, Workspace set-up           |     20%      |
-|  5  |    Nguyen Hai Ngoc     | ITDSIU21057  | ITDSIU21057@student.hcmiu.edu.vn | [haingocnguyen](https://github.com/haingocnguyen) | Implement classification/prediction algorithms in Java, Bug fixing |     20%      |
+| No. |       Full Name        | Student's ID |              Email               |                  Github account                   |                               Roles                                |
+| :-: | :--------------------: | :----------: | :------------------------------: | :-----------------------------------------------: | :----------------------------------------------------------------: |
+|  1  |  Nguyễn Minh Đạt   | ITDSIU20090  | ITDSIU20090@student.hcmiu.edu.vn |     [nghganhtu](https://github.com/nghganhtu)     |   **TEAM LEADER** with Model evaluation, Hyper-parameters tuning   |
+|  2  |   Dương Ngọc Phương Anh    | ITDSIU20031  | ITDSIU20031@student.hcmiu.edu.vn |    [itzmealvin](https://github.com/itzmealvin)    |              Data preprocessing, Optimize performance              |
+|  3  | Nguyễn Hải Phú | ITDSIU20100  | ITDSIU20100@student.hcmiu.edu.vn |     [GiaKhanhs](https://github.com/GiaKhanhs)     | Implement classification/prediction algorithms in Java, Bug fixing |
+
 
 ## 2. The project we are working on
 
@@ -71,7 +70,7 @@ predictions.
 - [ ] Deploy AI Chatbot based on the result
 - [ ] More to come...
 
-Please see the [open issues](https://github.com/GiaKhanhs/DM_Project/issues) for a full list of proposed features (
+Please see the [open issues](https://github.com/dngcphngnh04/DataMining-Project/issues) for a full list of proposed features (
 and known issues).
 
 # METHODOLOGY (based on theory class)
@@ -141,7 +140,7 @@ The final step involves evaluating a machine learning model on a test dataset to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/GiaKhanhs/DM_Project.git
+   git clone https://github.com/dngcphngnh04/DataMining-Project.git
    ```
 2. Open in a Java IDE (preferably JetBrains IntelliJ IDEA)
 3. Now click on File > Project Structure... > Library. Click on (+) button on point to the `lib` folder, add the
@@ -263,7 +262,7 @@ Don't forget to give the project a star! Thanks again!
 
 Nguyen Hoang Anh Tu by **[Email HERE](mailto:ITDSIU20090@student.hcmiu.edu.vn)**
 
-Project Link: **[GitHub HERE](https://github.com/GiaKhanhs/DM_Project/issues)**
+Project Link: **[GitHub HERE](https://github.com/dngcphngnh04/DataMining-Project/issues)**
 
 <!-- ACKNOWLEDGMENTS -->
 
@@ -278,9 +277,9 @@ goals:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/GiaKhanhs/DM_Project.svg?style=for-the-badge
-[contributors-url]: https://github.com/GiaKhanhs/DM_Project/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/GiaKhanhs/DM_ProjectC.svg?style=for-the-badge
-[forks-url]: https://github.com/GiaKhanhs/DM_Project/network/members
-[issues-shield]: https://img.shields.io/github/issues/GiaKhanhs/DM_Project.svg?style=for-the-badge
-[issues-url]: https://github.com/GiaKhanhs/DM_Project/issues
+[contributors-shield]: https://img.shields.io/github/contributors/dngcphngnh04/DataMining-Project.svg?style=for-the-badge
+[contributors-url]: https://github.com/dngcphngnh04/DataMining-Project/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/dngcphngnh04/DataMining-ProjectC.svg?style=for-the-badge
+[forks-url]: https://github.com/dngcphngnh04/DataMining-Project/network/members
+[issues-shield]: https://img.shields.io/github/issues/dngcphngnh04/DataMining-Project.svg?style=for-the-badge
+[issues-url]: https://github.com/dngcphngnh04/DataMining-Project/issues
