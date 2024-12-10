@@ -1,4 +1,4 @@
-<div id="top" align="center">
+![image](https://github.com/user-attachments/assets/21486dc0-1001-4576-92ad-5d647a4af0cb)![image](https://github.com/user-attachments/assets/ff9ed7bb-c0cc-4f53-8658-4896f15308b5)<div id="top" align="center">
 </div>
 <!-- PROJECT LOGO -->
 <div align="center">
@@ -24,43 +24,32 @@
 
 | No. |       Full Name        | Student's ID |              Email               |                  Github account                   |                               Roles                                |
 | :-: | :--------------------: | :----------: | :------------------------------: | :-----------------------------------------------: | :----------------------------------------------------------------: |
-|  1  | Dương Ngọc Phương Anh | ITDSIU20090  | ITDSIU20090@student.hcmiu.edu.vn |     [dngcphngnh04](https://github.com/dngcphngnh04)     |   **TEAM LEADER** with Model evaluation, Hyper-parameters tuning   |
-|  2  | Nguyễn Minh Đạt | ITDSIU20031  | ITDSIU20031@student.hcmiu.edu.vn |    [29Schiller](https://github.com/29Schiller)    |              Data preprocessing, Optimize performance              |
-|  3  | Nguyễn Hải Phú | ITDSIU20100  | ITDSIU20100@student.hcmiu.edu.vn |     [haiphu241](https://github.com/haiphu241)     | Implement classification/prediction algorithms in Java, Bug fixing |
+|  1  | Dương Ngọc Phương Anh | ITDSIU22135  | ITDSIU22135@student.hcmiu.edu.vn |     [dngcphngnh04](https://github.com/dngcphngnh04)     |   **TEAM LEADER** with Model evaluation, Hyper-parameters tuning   |
+|  2  | Nguyễn Minh Đạt | ITDSIU22166  | ITDSIU22166@student.hcmiu.edu.vn |    [29Schiller](https://github.com/29Schiller)    |              Data preprocessing, Optimize performance              |
+|  3  | Nguyễn Hải Phú | ITDSIU22179  | ITDSIU22179@student.hcmiu.edu.vn |     [haiphu241](https://github.com/haiphu241)     | Implement classification/prediction algorithms in Java, Bug fixing |
 
 
 ## 2. The project we are working on
 
-The project investigates depression in Vietnamese teenagers aged 15-25 using modern data mining methods, highlighting
-the need for culturally sensitive early detection strategies to reduce mental health issues.
+The primary goal of this project is to evaluate the effectiveness, accuracy, and relevance of these machine learning models in addressing classification problems, particularly in predicting survival outcomes.
+
 
 ## 3. Goal
+The purpose of this project is to develop an advanced data mining framework composed of two key components, each designed to address specific analytical objectives and provide valuable insights:
+-	The first component is a classification and prediction model that integrates the strengths of Decision Trees, Naive Bayes, and IBK algorithms. This model will leverage key features such as demographic attributes, ticket class, and other relevant variables to accurately predict passenger survival. By combining these algorithms, the framework ensures a balanced approach, utilizing Decision Trees for their interpretability, Naive Bayes for its probabilistic predictions, and IBK for its adaptability to instance-based learning. Together, these methods aim to deliver robust and reliable predictions.
+-	The second component is a sequence mining algorithm, which seeks to uncover hidden sequential patterns within the dataset. This algorithm will identify logical relationships and temporal dependencies between events, providing a deeper understanding of how different factors interact over time to influence survival outcomes. By analyzing these patterns, the framework will reveal meaningful insights that go beyond static feature relationships.
 
-- Use machine learning models to accurately predict depression levels among Vietnamese students.
-- Tests a range of complex machine learning model approaches to identify the most successful ones.
-- Increase the endurance and effectiveness of these classification models by including more potent algorithms.
-- Apply data mining techniques to real-world datasets to bridge the gap between theoretical research and practical
-  application.
-- Empower healthcare practitioners to make more informed clinical decisions and enhance the mental health of Vietnamese
-  students through early detection and intervention.
 
 # REASON
 
 ## 1. Motivation
 
-Depression awareness in Vietnam has increased due to the Internet, but the public's willingness to seek screenings
-remains low. Self-assessment programs like "15minutes4me" offer hope, but they often rely on predetermined symptoms,
-overlooking the complex interplay between living environment and stress. This data mining project aims to predict
-depression levels among Vietnamese students aged 15 to 25 by investigating environmental factors and pressures. Building
-on prior research, the study uses a classification model and analytic techniques to provide a more nuanced understanding
-of depression among Vietnamese students.
-
+Airplane passenger satisfaction has become a critical focus for airlines aiming to enhance customer experience and maintain competitive advantage. Factors influencing satisfaction range from tangible elements like seat comfort, food quality, and punctuality to intangible aspects such as service quality, staff behavior, and ease of communication. With the rapid advancement of technology, airlines have introduced features like in-flight entertainment, Wi-Fi connectivity, and streamlined check-in processes to improve customer experience. This data mining project seeks to analyze passenger satisfaction by leveraging a classification model to identify the key determinants that contribute to a positive travel experience. By uncovering these insights, airlines can implement targeted strategies to elevate service standards and address common pain points, ensuring higher customer retention and loyalty.
 ## 2. Idea
+This study examines airplane passenger satisfaction using data mining techniques to uncover key determinants of a positive flying experience. It evaluates the accuracy of machine learning algorithms in predicting satisfaction levels and explores their practical applications in improving airline services. By identifying critical factors, the research aims to help airlines enhance customer experiences, increase loyalty, and optimize service offerings.
 
-Using machine learning model built on top of classification algorithms, to improve prediction accuracy in various
-sectors, particularly in measuring depression levels among Vietnamese students. Advanced algorithms like Support Vector
-Machine, Naive Bayes, and K-Nearest Neighbors are used to manage large datasets, identify patterns, and make accurate
-predictions.
+
+
 
 ## 3. Roadmap
 
@@ -75,18 +64,15 @@ and known issues).
 
 ## 1. Ask a question
 
-This study focuses on predicting depression levels among Vietnamese students using data mining techniques. It
-investigates the accuracy of machine learning algorithms and their practical implications for early detection and
-intervention, aiming to improve students' well-being and academic performance.
+This study focuses on analyzing airplane passenger satisfaction using data mining techniques. It investigates the effectiveness of machine learning algorithms in identifying factors that influence satisfaction and their practical implications for improving customer experience. The research aims to help airlines enhance service quality, boost customer retention, and ensure a more enjoyable travel experience for passengers.
+
+
 
 ## 2. Data gathering
 
-The research used a systematic approach to gather data on stress and pressure among Vietnamese students. A **Google Form**
-survey was created based on various studies and conversations with university specialists. The survey identified five
-main causes of stress: employment, studies, self, family, and love. The Patient Health Questionnaire (PHQ-9) was used to
-assess depression risk. The survey was distributed to a diverse group of Vietnamese students, ensuring confidentiality
-and anonymity. The data collected was evaluated for quality and completeness, aiming to improve knowledge and early
-detection of depression among Vietnamese students.
+This study examines airplane passenger satisfaction using data mining techniques to uncover key determinants of a positive flying experience. It evaluates the accuracy of machine learning algorithms in predicting satisfaction levels and explores their practical applications in improving airline services. By identifying critical factors, the research aims to help airlines enhance customer experiences, increase loyalty, and optimize service offerings.
+
+
 
 ## 3. Data cleaning
 
@@ -94,7 +80,7 @@ The pre-processing stage of a depression study involved categorizing responses i
 
 ## 4. Model building
 
-Machine learning algorithms are crucial for creating classification models, as they identify trends and make data-driven judgments. Techniques like ibk, J48, Logistic Regression, Naive Bayes, OneR, SVM, AdaBoostM1, RandomForest, and ExtraTree are used to classify instances based on their closest neighbors, making them suitable for pattern recognition tasks, binary classification, and large datasets. Ensemble approaches like AdaBoostM1 and RandomForest increase classification performance by integrating multiple classifiers, while ExtraTree increases resilience by creating decision trees with random splits. Weka supports these models and offers full modeling and training capabilities, making the development process easier. Weka functions like buildClassifier are often used throughout the model development process, making the training process quick for many classifiers.
+Machine learning algorithms are crucial for creating classification models, as they identify trends and make data-driven judgments. Techniques like ibk, J48, Logistic Regression, Naive Bayes, OneR, SVM, AdaBoostM1, RandomForest are used to classify instances based on their closest neighbors, making them suitable for pattern recognition tasks, binary classification, and large datasets. Ensemble approaches like AdaBoostM1 and RandomForest increase classification performance by integrating multiple classifiers. Weka supports these models and offers full modeling and training capabilities, making the development process easier. Weka functions like buildClassifier are often used throughout the model development process, making the training process quick for many classifiers.
 
 ## 5. Return the result
 
