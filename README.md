@@ -4,7 +4,7 @@
 <div align="center">
 <h1 align="center">Data Mining Project</h1>
   <h3 align="center">
-    Applying data mining techniques to predict the depression level of Vietnamese students
+    Applying nine classification algorithms for evaluating the efficiency on the Airline Passenger Satisfaction Dataset
     <br />
     <br />
     <a href="https://github.com/GiaKhanhs/DM_Project/issues">Report Bug</a>
