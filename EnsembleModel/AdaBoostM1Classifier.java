@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class AdaBoostM1Classifier {
     public static void main(String[] args) throws Exception {
-        DataSource source = new DataSource("C:\\Users\\tonga\\IdeaProjects\\DataMining-Project\\Data\\customers_data.arff");
+        DataSource source = new DataSource("Data\\customers_data.arff");
         Instances dataset = source.getDataSet();
 
         dataset.setClassIndex(dataset.numAttributes() - 1);
